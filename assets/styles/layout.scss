@@ -19,3 +19,11 @@ body {
   -webkit-box-shadow: 10px 8px 17px -7px rgb(0 0 0 / 75%);
   -moz-box-shadow: 10px 8px 17px -7px rgba(0, 0, 0, 0.75);
 }
+
+.blockBox {
+    padding: 10px;
+    color: $white;
+    background-color: $purple-light;
+    border-radius: 5px;
+    margin-bottom: 5px;
+}

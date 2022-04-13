@@ -1,5 +1,6 @@
 import "../styles/globals.css";
 import "bootstrap/dist/css/bootstrap.min.css";
+import "bootstrap-icons/font/bootstrap-icons.css";
 import "../assets/styles/main.scss";
 import Head from "next/head";
 import { useRouter } from "next/dist/client/router";
@@ -18,10 +19,10 @@ function MyApp({ Component, pageProps }) {
       <div className="container ">
         <div className="row d-flex justify-content-center">
           <div className="col-12 col-md-8 mainBox">
-            <div className="row col-12">
+            <div className="col-12 mb-4">
               <SearchBar/>
             </div>
-            <div className="row col-12">
+            <div className="col-12">
               <Component {...pageProps} />
             </div>
           </div>

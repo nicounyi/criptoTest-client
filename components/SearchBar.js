@@ -1,12 +1,26 @@
-import React from 'react';
+import React from "react";
 
-const SearchBar = () => {
-
+const Home = () => {
   return (
     <>
-    Barra de busqueda
+      <div className="input-group">
+        <span className="input-group-text p-1">
+          <select className="form-select" aria-label="Default select example">
+            <option selected disabled>Buscar por...</option>
+            <option value="1">Bloque</option>
+            <option value="2">Transacciones</option>
+            <option value="3">Address</option>
+          </select>
+        </span>
+        <input
+          type="text"
+          className="form-control"
+         
+        />
+         <button className="btn btn-outline-secondary" type="button" id="button-addon2">Buscar</button>
+      </div>
     </>
-  )
-}
+  );
+};
 
-export default SearchBar
+export default Home;
