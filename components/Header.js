@@ -2,8 +2,23 @@ import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import Logo from "../assets/img/logo_ripio.svg";
+import { getPrice } from "../services/get";
 
 const Header = () => {
+
+    const [ethPrice, setEthPrice] = useState();
+
+
+    useEffect(() => {
+        getActualPrice();
+      }, []);
+    
+      const getActualPrice = async () => {
+        const res = await getPrice();
+        setEthPrice(res.USD);
+
+      };
+
   return (
     <>
       <header className="container-fluid py-4 mt-3 navBarHeader">
@@ -17,7 +32,7 @@ const Header = () => {
               />
             </div>
             <div className="col-12 col-lg-4 text-xl-end navBarHeader_ethPrice">
-                Eth price: 
+                Eth price: {ethPrice}
             </div>
           </div>
         </div>

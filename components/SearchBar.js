@@ -6,7 +6,7 @@ const Home = () => {
       <div className="input-group">
         <span className="input-group-text p-1">
           <select className="form-select" aria-label="Default select example">
-            <option selected disabled>Buscar por...</option>
+            <option defaultValue disabled>Buscar por...</option>
             <option value="1">Bloque</option>
             <option value="2">Transacciones</option>
             <option value="3">Address</option>

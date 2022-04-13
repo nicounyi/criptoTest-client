@@ -1,34 +1,49 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { getNewBlock } from "../services/get";
 
 const Blocks = () => {
+  const [results, setResults] = useState([]);
+  const [filterResult, setFilterResults] = useState([]);
+  const [isloaded, setLoaded] = useState(false);
+
+  useEffect(() => {
+    getBlocks();
+    setInterval(() => getBlocks(), 8000);
+  }, []);
+
+  useEffect(() => {
+    let filter = results.filter(
+      (ele, ind) => ind === results.findIndex((elem) => elem.blockNumber === ele.blockNumber)
+    );
+    setFilterResults(filter);
+    console.log(filterResult);
+  }, [results]);
+
+  const getBlocks = async () => {
+    const res = await getNewBlock();
+    setResults((results) => [res.data, ...results]);
+  };
+
   return (
     <>
-        <div className="col-12 blockBox">
-          <div className="row">
-            <div className="col-3">
-              <i className="bi bi-collection"></i> 1223300 <br/>
-              25 sec ago
+      <div className="maxHeightBox">
+        {filterResult &&
+          filterResult.map((item) => (
+            <div className="col-12 blockBox" key={item.blockNumber}>
+              <div className="row">
+                <div className="col-3">
+                  <i className="bi bi-collection"></i> {item.blockNumber} <br />
+                  {item.time}
+                </div>
+                <div className="col-9">
+                  Miner: {item.miner}
+                  <br />
+                  Transacciones: {item.transactionsQuantity} txns
+                </div>
+              </div>
             </div>
-            <div className="col-9">
-              Miner: 0xCD458d7F11023556cC9058F729831a038Cb8Df9c             
-              <br/>
-              Transacciones: 20 txns
-            </div>
-          </div>
-        </div>
-        <div className="col-12 blockBox">
-          <div className="row">
-            <div className="col-3">
-              <i className="bi bi-collection"></i> 1223300 <br/>
-              25 sec ago
-            </div>
-            <div className="col-9">
-              Miner:             
-              <br/>
-              Transacciones: 
-            </div>
-          </div>
-        </div>
+          ))}
+      </div>
     </>
   );
 };
