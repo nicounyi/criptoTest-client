@@ -61,7 +61,7 @@ const Home = () => {
               <tr>
                 <th>Cantidad de Transacciones:</th>
                 <td>
-                  {result.transactionsQuantity}{" "}
+                  {result.transactionsQuantity}
                   <button
                     type="button"
                     onClick={onOpenModal}
@@ -74,23 +74,22 @@ const Home = () => {
             </tbody>
           </table>
           <Modal open={open} onClose={onCloseModal} center>
-            <h2>Transacciones en el blocque: {result.blockNumber}</h2>
+            <h4 className="mb-4">Transacciones en el bloque: {result.blockNumber}</h4>
             <table className="table table-striped">
               <tbody>
                 {result.transactions.map((item) => (
                   <>
                     <tr>
-                      <th>{item}</th>
+                      <th className="tableInfo__hash">{item}</th>
                       <td>
-                      <Link
-                    href={{
-                      pathname: "/transactions",
-                      query: { search: item },
-                    }}
-                  >
-                    <a className="tableInfo__link">Ver</a>
-                  </Link>
-                        
+                        <Link
+                          href={{
+                            pathname: "/transactions",
+                            query: { search: item },
+                          }}
+                        >
+                          <a className="tableInfo__link">Ver</a>
+                        </Link>
                       </td>
                     </tr>
                   </>
