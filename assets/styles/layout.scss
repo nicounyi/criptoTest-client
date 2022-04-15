@@ -26,6 +26,14 @@ body {
     background-color: $purple-light;
     border-radius: 5px;
     margin-bottom: 5px;
+    &__link {
+      text-decoration: none;
+      color: #fff;
+      font-weight: 600;
+      :hover {
+        color: #fff;
+      }
+    }
 }
 
 .maxHeightBox {

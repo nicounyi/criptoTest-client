@@ -1,26 +1,64 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { useRouter } from "next/dist/client/router";
 
-const Home = () => {
+const SearchBar = () => {
+  const [selectedType, setSelectedType] = useState("type");
+  const [search, setSearch] = useState("");
+  const router = useRouter();
+
+  const change = (e) => {
+    setSelectedType(e.target.value);
+  };
+
+  const handleKeyPress = (e) => {
+    if (e.key === "Enter") {
+      handleSubmit();
+    }
+  };
+
+  const handleSubmit = () => {
+    search.length > 0 && selectedType !== "type" &&
+    router.push({
+      pathname: `${selectedType}/`,
+      query: { search },
+  });
+  };
+
   return (
     <>
       <div className="input-group">
         <span className="input-group-text p-1">
-          <select className="form-select" aria-label="Default select example">
-            <option defaultValue disabled>Buscar por...</option>
-            <option value="1">Bloque</option>
-            <option value="2">Transacciones</option>
-            <option value="3">Address</option>
+          <select
+            className="form-select"
+            aria-label="Default select example"
+            value={selectedType}
+            onChange={change}
+          >
+            <option defaultValue value={"type"}>
+              Buscar por...
+            </option>
+            <option value="block">Bloque</option>
+            <option value="transactions">Transacciones</option>
+            <option value="address">Address</option>
           </select>
         </span>
         <input
           type="text"
           className="form-control"
-         
+          onKeyPress={handleKeyPress}
+          onChange={(e) => setSearch(e.target.value)}
         />
-         <button className="btn btn-outline-secondary" type="button" id="button-addon2">Buscar</button>
+        <button
+          className="btn btn-outline-secondary"
+          type="button"
+          id="button-addon2"
+          onClick={handleSubmit}
+        >
+          Buscar
+        </button>
       </div>
     </>
   );
 };
 
-export default Home;
+export default SearchBar;
