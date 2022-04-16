@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import Logo from "../assets/img/logo_ripio.svg";
+import Eth from "../assets/img/eth_logo.png";
 import { getPrice } from "../services/get";
 
 const Header = () => {
@@ -37,7 +38,14 @@ const Header = () => {
               </Link>
             </div>
             <div className="col-12 col-lg-4 text-xl-end navBarHeader_ethPrice">
-              Eth price: {ethPrice}
+              <div className="navBarHeader_ethPrice-content">
+              <Image
+                    src={Eth}
+                    alt="Eth"
+                    className="img-fluid navBarHeader_ethlogo"
+                  /> <span>{ethPrice}</span>
+              </div>
+           
             </div>
           </div>
         </div>
