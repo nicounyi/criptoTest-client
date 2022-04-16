@@ -21,7 +21,7 @@ const Header = () => {
       <header className="container-fluid py-4 mt-3 navBarHeader">
         <div className="container">
           <div className="row d-flex justify-content-center">
-            <div className="col-12 col-lg-4">
+            <div className="col-12 col-lg-5">
               <Link
                 href={{
                   pathname: "/",
@@ -30,7 +30,7 @@ const Header = () => {
                 <a title="toHome" className="nav-bar__image">
                   <Image
                     src={Logo}
-                    alt="Picture of the author"
+                    alt="Logo"
                     className="img-fluid navBarHeader_logo"
                   />
                 </a>
