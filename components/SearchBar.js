@@ -51,7 +51,7 @@ const SearchBar = () => {
         <button
           className="btn btn-outline-secondary"
           type="button"
-          id="button-addon2"
+          id="search"
           onClick={handleSubmit}
         >
           Buscar

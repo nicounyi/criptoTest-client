@@ -3,7 +3,6 @@ import { useRouter } from "next/dist/client/router";
 import { getTsx } from "../services/get";
 import Link from "next/link";
 
-
 const Txs = () => {
   const [textTitle, setTextTitle] = useState("");
   const router = useRouter();
@@ -14,7 +13,7 @@ const Txs = () => {
     try {
       const { data } = await getTsx(number);
       setResults(data);
-      setLoading(false)
+      setLoading(false);
     } catch (error) {
       setResults(error);
       console.error(error);
@@ -26,46 +25,38 @@ const Txs = () => {
     router.query.search && getTsxDetail(router.query.search);
   }, [router.query.search]);
 
-  return <>
-    {
-      isLoading &&
-      <div>
-        Cargando...
-      </div>
-    }
-    {
-      !isLoading && result.blockHash &&
+  return (
+    <>
+      {isLoading && <div>Cargando...</div>}
+      {!isLoading && result.blockHash && (
         <div className="tableInfo">
           <table className="table table-striped">
             <tbody>
               <tr>
                 <th>Numero de bloque:</th>
                 <td>
-                <Link
+                  <Link
                     href={{
                       pathname: "/block",
                       query: { search: result.blockNumber },
                     }}
                   >
                     <a className="tableInfo__link">{result.blockNumber}</a>
-                  </Link></td>
+                  </Link>
+                </td>
               </tr>
               <tr>
                 <th>Hash de bloque:</th>
-                <td>
-                {result.blockHash}
-                </td>
+                <td>{result.blockHash}</td>
               </tr>
               <tr>
                 <th>Hash:</th>
-                <td>
-                {result.hash}
-                </td>
+                <td>{result.hash}</td>
               </tr>
               <tr>
                 <th>From:</th>
                 <td>
-                <Link
+                  <Link
                     href={{
                       pathname: "/address",
                       query: { search: result.from },
@@ -77,14 +68,17 @@ const Txs = () => {
               </tr>
               <tr>
                 <th>To:</th>
-                <td> <Link
+                <td>
+                  {" "}
+                  <Link
                     href={{
                       pathname: "/address",
                       query: { search: result.to },
                     }}
                   >
                     <a className="tableInfo__link">{result.to}</a>
-                  </Link></td>
+                  </Link>
+                </td>
               </tr>
               <tr>
                 <th>Gas:</th>
@@ -92,15 +86,11 @@ const Txs = () => {
               </tr>
             </tbody>
           </table>
-          </div>
-    }
-    {
-      !isLoading && !result.blockHash &&
-      <div>
-        La transaccion no existe
-      </div>
-    }
-  </>;
+        </div>
+      )}
+      {!isLoading && !result.blockHash && <div>La transaccion no existe</div>}
+    </>
+  );
 };
 
 export default Txs;
